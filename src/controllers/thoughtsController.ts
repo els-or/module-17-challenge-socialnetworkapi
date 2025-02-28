@@ -12,7 +12,7 @@ export const getAllThoughts = async (_req: Request, res: Response) => {
 
 export const getThought = async (req: Request, res: Response) => {
     try {
-        const thought = await Thought.findById(req.params.id);
+        const thought = await Thought.findById(req.params.thoughtId);
         res.json(thought);
     } catch (err) {
         res.status(500).json(err);
