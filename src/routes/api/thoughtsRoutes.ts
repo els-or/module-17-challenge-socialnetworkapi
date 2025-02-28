@@ -5,8 +5,8 @@ import {
     createThought,
     updateThought,
     deleteThought,
-} from '../../controllers/thoughtsController';
-import { addReaction, removeReaction } from '../../controllers/reactionsController.ts';
+} from '../../controllers/thoughtsController.js';
+import { addReaction, removeReaction } from '../../controllers/reactionsController.js';
 
 const router = Router();
 

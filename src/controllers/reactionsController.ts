@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Thought } from '../models';
+import { Thought } from '../models/index.js';
 
 export const addReaction = async (req: Request, res: Response) => {
     try {

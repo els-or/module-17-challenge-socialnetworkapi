@@ -25,7 +25,7 @@ const thoughtSchema = new Schema<IThought>(
         createdAt: {
             type: Date,
             default: Date.now,
-            get: (timestamp) => (
+            get: (timestamp: Date) => (
             new Date(timestamp).toLocaleString('en-US',{
                 year: 'numeric',
                 month: 'long',
@@ -52,7 +52,7 @@ const thoughtSchema = new Schema<IThought>(
             createdAt: {
                 type: Date,
                 default: Date.now,
-                get: (timestamp) => (
+                get: (timestamp: Date) => (
                     new Date(timestamp).toLocaleString('en-US', {
                         year: 'numeric',
                         month: 'long',
@@ -68,16 +68,12 @@ const thoughtSchema = new Schema<IThought>(
         timestamps: true,
         toJSON: { getters: true },
         toObject: { getters: true },
-        virtuals: {
-            reactionCount: {
-                get: function() {
-                    return this.reactions.length;
-                }
-            },
-        }
     }
 );
 
+thoughtSchema.virtual('reactionCount').get(function(this: IThought) {
+    return this.reactions.length;
+});
 
-    const Thought = model<IThought>('Thought', thoughtSchema);
-    export default Thought;
+const Thought = model<IThought>('Thought', thoughtSchema);
+export default Thought;

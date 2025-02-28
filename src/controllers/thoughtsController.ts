@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { User, Thought } from '../models';
+import { User, Thought } from '../models/index.js';
 
-export const getAllThoughts = async (req: Request, res: Response) => {
+export const getAllThoughts = async (_req: Request, res: Response) => {
     try {
         const thoughts = await Thought.find();
         res.json(thoughts);
@@ -21,7 +21,7 @@ export const getThought = async (req: Request, res: Response) => {
 export const createThought = async (req: Request, res: Response) => {
     try {
         const newThought = await Thought.create(req.body);
-        const user = await User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
             req.body.userId,
             { $push: { thoughts: newThought._id } },
             { new: true }
@@ -74,9 +74,9 @@ export const deleteReaction = async (req: Request, res: Response) => {
             return res.status(404).json({ message: 'No thought found with this id!' });
         }
 
-        res.json(updatedThought);
+        return res.json(updatedThought);
     } catch (err) {
-        res.status(500).json(err);
+        return res.status(500).json(err);
     }
 };
 

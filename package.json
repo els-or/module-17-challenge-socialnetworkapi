@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "social network api",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "build": "npx tsc",
     "start": "npm run build && node dist/server.js",
@@ -11,7 +12,6 @@
     "dev": "nodemon src/server.ts"
   },
   "keywords": [
-    "[]"
   ],
   "author": "Rachel Sutton",
   "license": "ISC",
